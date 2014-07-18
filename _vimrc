@@ -20,17 +20,24 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 Bundle "scrooloose/nerdtree"
 Bundle "ervandew/supertab"
+Bundle "taglist.vim"
 
 
 " active snippets
 let g:snippets_dir = "C:\Documents and Settings\FUBON\.vim\bundle\vim-snippets"
 
+function Check_Perl_Syntax()
+    :write
+    :w !perl -c %
+endfunction
+
 filetype plugin indent on
 set completeopt=longest,menu
 set wildmenu
 " hot key setting
-autocmd Bufread,BufNewFile *.py map <buffer> <F9> :w !%<CR>
-autocmd Bufread,BufNewFile *.pl map <buffer> <F9> :w !%<CR>
+"autocmd Bufread,BufNewFile *.py map <buffer> <F9> :w !%<CR>
+"autocmd Bufread,BufNewFile *.pl map <buffer> <F9> :w !%<CR>
+autocmd FileType perl map ck :exec Check_Perl_Syntax()<cr>
 autocmd Bufread,BufNewFile *.bat set nobackup
 autocmd Bufread,BufNewFile *.sql set nobackup
 set tabstop=4
@@ -81,6 +88,7 @@ map <C-h>r :%!xxd -r<CR>
 map <F4> :NERDTreeToggle<CR>
 map dir :NERDTreeToggle<CR>
 map ls :NERDTreeToggle<CR>
+map tls :Tlist<CR>
 
 map <C-,> <C-W><
 map <C-.> <C-W>>
